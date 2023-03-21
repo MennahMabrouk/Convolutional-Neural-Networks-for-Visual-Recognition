@@ -1,3 +1,26 @@
+'''
+This code imports the necessary libraries, including TensorFlow, NumPy, and Keras, 
+and then defines some variables that are used throughout the code.
+
+It then loads a dataset of images, splits it into training and validation sets, 
+and applies a scaling function to the images in both sets. The scaling function divides 
+each pixel value in the images by 255 to normalize the pixel values to the range [0,1].
+
+Next, the code defines two functions for processing the input and target images. 
+The process_input function converts the input image to the YUV color space, splits the image 
+into its Y (luminance) channel and its U and V (chrominance) channels, and then resizes 
+the Y channel to the specified input size. The process_target function simply converts the target image to 
+the YUV color space and returns the Y channel.
+
+The training and validation sets are then mapped to these two functions 
+using a lambda function, which allows them to be applied to each image in the dataset. 
+The datasets are also pre-fetched for better performance during training.
+
+Finally, the code defines a function get_model that creates a convolutional neural network model 
+for image super-resolution. The model takes an input image and applies a series of convolutional layers to it, followed 
+by a final depth-to-space layer that upscales the image by the specified factor. 
+The model architecture is based on the "ESPCN" model for super-resolution.
+'''
 import tensorflow as tf
 import os
 import numpy as np
